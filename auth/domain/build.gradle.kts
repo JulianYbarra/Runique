@@ -1,9 +1,8 @@
 plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.runique.jvm.library)
+    alias(libs.plugins.runique.jvm.ktor)
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+dependencies {
+    implementation(projects.core.domain)
 }
