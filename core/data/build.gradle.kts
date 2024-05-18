@@ -13,4 +13,6 @@ dependencies {
 
     // Timber
     implementation(libs.timber)
+
+    implementation(libs.bundles.koin)
 }
