@@ -11,5 +11,6 @@ dependencies {
 
     implementation(projects.core.domain)
 
+    implementation(libs.bundles.koin)
     implementation(libs.org.mongodb.bson)
 }

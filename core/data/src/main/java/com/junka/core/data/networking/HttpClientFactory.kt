@@ -21,7 +21,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import timber.log.Timber
 
-class HttpClientFactory(
+class   HttpClientFactory(
     private val sessionStorage: SessionStorage
 ) {
 
