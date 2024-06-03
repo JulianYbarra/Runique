@@ -3,9 +3,11 @@ package com.junka.convention
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.BuildType
 import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.DynamicFeatureExtension
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.junka.convention.ExtensionType.APPLICATION
+import com.junka.convention.ExtensionType.DYNAMIC_FEATURE
 import com.junka.convention.ExtensionType.LIBRARY
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -37,6 +39,18 @@ internal fun Project.configureBuildTypes(
                     buildTypes {
                         debug { configureDebugBuildType(apiKey) }
                         release { configureReleaseBuildType(commonExtension, apiKey) }
+                    }
+                }
+            }
+
+            DYNAMIC_FEATURE -> {
+                extensions.configure<DynamicFeatureExtension> {
+                    buildTypes {
+                        debug { configureDebugBuildType(apiKey) }
+                        release {
+                            configureReleaseBuildType(commonExtension, apiKey)
+                            isMinifyEnabled = false
+                        }
                     }
                 }
             }
