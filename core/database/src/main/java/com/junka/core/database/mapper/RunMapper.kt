@@ -21,11 +21,13 @@ fun RunEntity.toRun(): Run {
         maxSpeedKmH = maxSpeedKmH,
         distanceMeters = distanceMeters,
         totalElevationMeters = totalElevationMeters,
-        mapPictureUrl = mapPictureUrl
+        mapPictureUrl = mapPictureUrl,
+        avgHeartRate = avgHeartRate,
+        maxHeartRate = maxHeartRate
     )
 }
 
-fun Run.toRunEntity() : RunEntity {
+fun Run.toRunEntity(): RunEntity {
     return RunEntity(
         id = id ?: ObjectId().toHexString(),
         durationMillis = duration.inWholeMilliseconds,
@@ -36,6 +38,8 @@ fun Run.toRunEntity() : RunEntity {
         avgSpeedKmH = avgSpeedKmH,
         distanceMeters = distanceMeters,
         totalElevationMeters = totalElevationMeters,
-        mapPictureUrl = mapPictureUrl ?: ""
+        mapPictureUrl = mapPictureUrl ?: "",
+        avgHeartRate = avgHeartRate,
+        maxHeartRate = maxHeartRate
     )
 }

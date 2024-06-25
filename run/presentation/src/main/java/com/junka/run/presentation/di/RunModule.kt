@@ -10,6 +10,9 @@ import org.koin.dsl.module
 val runModule = module {
 
     singleOf(::RunningTracker)
+    single {
+        get<RunningTracker>().elapsedTime
+    }
 
     viewModelOf(::RunOverviewViewModel)
     viewModelOf(::ActiveRunViewModel)

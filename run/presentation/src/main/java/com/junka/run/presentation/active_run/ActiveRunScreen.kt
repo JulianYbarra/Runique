@@ -20,11 +20,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.junka.core.notification.ActiveRunService
 import com.junka.core.presentation.designsystem.RuniqueTheme
 import com.junka.core.presentation.designsystem.StartIcon
 import com.junka.core.presentation.designsystem.StopIcon
@@ -38,7 +41,6 @@ import com.junka.core.presentation.ui.ObserveAsEvent
 import com.junka.run.presentation.R
 import com.junka.run.presentation.active_run.component.RunDataCard
 import com.junka.run.presentation.active_run.maps.TrackerMap
-import com.junka.run.presentation.active_run.service.ActiveRunService
 import com.junka.run.presentation.util.hasLocationPermission
 import com.junka.run.presentation.util.hasNotificationPermission
 import com.junka.run.presentation.util.shouldShowLocationPermissionRationale
@@ -50,8 +52,8 @@ import java.io.ByteArrayOutputStream
 fun ActiveRunScreenRoot(
     viewModel: ActiveRunViewModel = koinViewModel(),
     onServiceToggle: (isServiceRunning: Boolean) -> Unit,
-    onFinish : () -> Unit,
-    onBack : () -> Unit
+    onFinish: () -> Unit,
+    onBack: () -> Unit
 ) {
 
     val context = LocalContext.current
@@ -71,12 +73,13 @@ fun ActiveRunScreenRoot(
         state = viewModel.state,
         onServiceToggle = onServiceToggle,
         onAction = { action ->
-            when(action){
+            when (action) {
                 ActiveRunAction.OnBackClick -> {
-                    if(!viewModel.state.hasStartedRunning){
+                    if (!viewModel.state.hasStartedRunning) {
                         onBack()
                     }
                 }
+
                 else -> Unit
             }
             viewModel.onAction(action)
@@ -148,8 +151,9 @@ fun ActiveRunScreen(
         }
     }
 
+    val isServiceActive by ActiveRunService.isServiceActive.collectAsStateWithLifecycle()
     LaunchedEffect(key1 = state.shouldTrack) {
-        if (context.hasLocationPermission() && state.shouldTrack && !ActiveRunService.isServiceActive) {
+        if (context.hasLocationPermission() && state.shouldTrack && !isServiceActive) {
             onServiceToggle(true)
         }
     }

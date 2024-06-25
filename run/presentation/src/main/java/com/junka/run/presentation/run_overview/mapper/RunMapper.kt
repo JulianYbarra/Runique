@@ -2,6 +2,7 @@ package com.junka.run.presentation.run_overview.mapper
 
 import com.junka.core.domain.run.Run
 import com.junka.core.presentation.ui.formatted
+import com.junka.core.presentation.ui.toFormattedHeartRate
 import com.junka.core.presentation.ui.toFormattedKm
 import com.junka.core.presentation.ui.toFormattedKmH
 import com.junka.core.presentation.ui.toFormattedMeters
@@ -31,6 +32,8 @@ fun Run.toRunUi(): RunUi {
         maxSpeed = maxSpeedKmH.toFormattedKmH(),
         pace = duration.toFormattedPace(distanceKm),
         totalElevation = totalElevationMeters.toFormattedMeters(),
-        mapPictureUrl = mapPictureUrl
+        mapPictureUrl = mapPictureUrl,
+        maxHeartRate = maxHeartRate.toFormattedHeartRate(),
+        avgHeartRate = avgHeartRate.toFormattedHeartRate()
     )
 }

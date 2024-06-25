@@ -11,8 +11,8 @@ import androidx.navigation.navDeepLink
 import com.junka.auth.presentation.intro.IntroScreenRoot
 import com.junka.auth.presentation.login.LoginScreenRoot
 import com.junka.auth.presentation.register.RegisterScreenRoot
+import com.junka.core.notification.ActiveRunService
 import com.junka.run.presentation.active_run.ActiveRunScreenRoot
-import com.junka.run.presentation.active_run.service.ActiveRunService
 import com.junka.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -26,7 +26,7 @@ fun NavigationRoot(
         startDestination = if (isLoggedIn) "run" else "auth"
     ) {
         authGraph(navController)
-        runGraph(navController,onAnalyticsClick)
+        runGraph(navController, onAnalyticsClick)
     }
 }
 

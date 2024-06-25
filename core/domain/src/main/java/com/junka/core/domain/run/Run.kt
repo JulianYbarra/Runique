@@ -13,7 +13,9 @@ data class Run(
     val location : Location,
     val maxSpeedKmH : Double,
     val totalElevationMeters : Int,
-    val mapPictureUrl : String?
+    val mapPictureUrl : String?,
+    val avgHeartRate: Int?,
+    val maxHeartRate: Int?
 ){
     val avgSpeedKmH : Double
         get() = (distanceMeters / 1000.0) / duration.toDouble(DurationUnit.HOURS)

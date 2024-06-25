@@ -12,6 +12,9 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.run.domain)
 
+    implementation(projects.core.connectivity.domain)
+
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.google.android.gms.play.services.location)
     implementation(libs.androidx.work)

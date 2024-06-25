@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.junka.core.presentation.designsystem.RuniqueTheme
 import com.junka.core.presentation.ui.formatted
+import com.junka.core.presentation.ui.toFormattedHeartRate
 import com.junka.core.presentation.ui.toFormattedKm
 import com.junka.core.presentation.ui.toFormattedPace
 import com.junka.run.domain.RunData
@@ -58,6 +59,12 @@ fun RunDataCard(
             RunDataItem(
                 title = stringResource(id = R.string.distance),
                 value = (runData.distanceMeters / 1000.0).toFormattedKm(),
+                modifier = Modifier
+                    .defaultMinSize(minWidth = 75.dp)
+            )
+            RunDataItem(
+                title = stringResource(id = R.string.heart_rate),
+                value = runData.heartRates.lastOrNull().toFormattedHeartRate(),
                 modifier = Modifier
                     .defaultMinSize(minWidth = 75.dp)
             )
@@ -105,6 +112,7 @@ private fun RunDataCardPreview() {
             elapsedTime = 10.minutes,
             runData = RunData(
                 distanceMeters = 3425,
+                heartRates = listOf(150),
                 pace = 3.minutes,
             )
         )
