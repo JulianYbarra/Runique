@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.runique.jvm.library)
-    alias(libs.plugins.runique.jvm.ktor)
+    alias(libs.plugins.runique.jvm.junit5)
 }
 
 dependencies {
